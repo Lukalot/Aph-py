@@ -13,7 +13,7 @@ This is the help command output:
 * `!ms / !memorysize` : Output memory size (based on the amount of keys stored in json)
 * `!r / !reset` : Reset program to initial state
 * `!f / !forget` : Forget all memory data
-* `!c / !clear` : clear console
-* `!sl / !shouldlearn` : toggle learning on or off
-* `!s / !save` : save memory to save.json
-* `!ld / !load` : load memory from save.json
+* `!c / !clear` : Clear console
+* `!sl / !shouldlearn` : Toggle learning on or off
+* `!s / !save` : Save memory to save.json
+* `!ld / !load` : Load memory from save.json
