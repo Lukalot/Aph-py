@@ -18,10 +18,10 @@ help_text = '''================== uwuAI Help ==================
 !ms / !memorysize : Output memory size (based on the amount of keys stored in json)
 !r / !reset : Reset program to initial state
 !f / !forget : Forget all memory data
-!c / !clear : clear console
-!sl / !shouldlearn : toggle learning on or off
-!s / !save : save memory to save.json
-!ld / !load : load memory from save.json
+!c / !clear : Clear console
+!sl / !shouldlearn : Toggle learning on or off
+!s / !save : Save memory to the given save file
+!ld / !load : Load memory from the given save file
 ================================================'''
 
 def console_fresh(title):
@@ -29,10 +29,9 @@ def console_fresh(title):
     print(title)
     print('=' * 40)
 
-response = '<NEW_CONVERSATION_INITIAL_VALUE>'
+response = ""
 memory = {}
 should_learn = True
-save_location = "save.json"
 
 def converse(user_input):
     global response
@@ -48,10 +47,9 @@ def converse(user_input):
         if memory.get(user_input):
             response = choice(memory.get(user_input))
         else:
-            response = choice(memory.get(difflib.get_close_matches(user_input,
-list(memory.keys()), 1, 0)[0]))
+            response = choice(memory.get(difflib.get_close_matches(user_input, list(memory.keys()), 1, 0)[0]))
     else:
-        print('NOTE: uwuAI has no learned data to respond with - turn on learning with the !learn special command')
+        print('uwuAI has no learned data to respond with - turn on learning with the !learn special command.')
 
     if response:
         print('>> ' + response)
@@ -62,33 +60,47 @@ list(memory.keys()), 1, 0)[0]))
 console_fresh(title_art)
 while True:
     user_input = input()
-    if user_input == "!help" or user_input == "!h":
-        print(help_text)
-    elif user_input == "!memory" or user_input == "!m":
-        print(memory)
-    elif user_input == "!memorysize" or user_input == "!ms":
-        print("Memory keys size: " + str(len(list(memory.keys()))))
-    elif user_input == "!forget" or user_input == "!f":
-        memory = {}
-        response = '<NEW_CONVERSATION_INITIAL_VALUE>'
-        print('Forgot all memory.')
-    elif user_input == "!clear" or user_input == "!c":
-        console_fresh(title_art)
-    elif user_input == "!reset" or user_input == "!r":
-        memory = {}
-        response = '<NEW_CONVERSATION_INITIAL_VALUE>'
-        console_fresh(title_art)
-    elif user_input == "!shouldlearn" or user_input == "!sl":
-        should_learn = not should_learn
-        print("Learning set to " + str(should_learn))
-    elif user_input == "!save" or user_input == "!s":
-        with open(save_location, 'w') as f:
-            json.dump(memory, f)
-        print(str(len(list(memory.keys()))) + " memory keys saved to " + save_location)
 
-    elif user_input == "!load" or user_input == "!ld":
-        with open(save_location, "r") as f:
-            memory = json.load(f)
-        print('Loaded ' + str(len(list(memory.keys()))) + ' memory keys to memory from ' + save_location)
+    if user_input.startswith('!'):
+        arguments = user_input[1:].split(' ')
+        
+        if arguments[0] == "help" or arguments[0] == "h":
+            print(help_text)
+        elif arguments[0] == "memory" or arguments[0] == "m":
+            print(memory)
+        elif arguments[0] == "memorysize" or arguments[0] == "ms":
+            print("Memory keys size: " + str(len(list(memory.keys()))))
+        elif arguments[0] == "forget" or arguments[0] == "f":
+            memory = {}
+            response = ""
+            print('Forgot all memory.')
+        elif arguments[0] == "clear" or arguments[0] == "c":
+            console_fresh(title_art)
+        elif arguments[0] == "reset" or arguments[0] == "r":
+            memory = {}
+            response = ""
+            console_fresh(title_art)
+        elif arguments[0] == "shouldlearn" or arguments[0] == "sl":
+            should_learn = not should_learn
+            print("Learning set to " + str(should_learn))
+        elif arguments[0] == "save" or arguments[0] == "s":
+            if len(arguments) >= 2:
+                with open('saves/' + arguments[1] + '.json', 'w') as f:
+                    json.dump(memory, f)
+                print("Saved" + str(len(list(memory.keys()))) + " memory keys to saves/" + arguments[1] + '.json')
+            else:
+                with open('saves/_default.json', 'w') as f:
+                    json.dump(memory, f)
+                print('Saved ' + str(len(list(memory.keys()))) + ' memory keys to default save location')
+
+        elif arguments[0] == "load" or arguments[0] == "ld":
+            if len(arguments) >= 2:
+                with open('saves/' + arguments[1] + '.json', "r") as f:
+                    memory = json.load(f)
+                print('Loaded ' + str(len(list(memory.keys()))) + ' memory keys to memory from saves/' + arguments[1] + '.json')
+            else:
+                with open('saves/_default.json', "r") as f:
+                    memory = json.load(f)
+                print('Loaded ' + str(len(list(memory.keys()))) + ' memory keys to memory from default save location')
     else:
         converse(user_input)
