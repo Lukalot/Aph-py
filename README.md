@@ -10,7 +10,7 @@ Typing messages in the program console will cause uwuAI to respond to and store/
 This is the help command output:
 * `!h / !help` : Looks like you found this one
 * `!m / !memory` : Output memory data
-* `!ms / !memorysize` : Output memory data
+* `!ms / !memorysize` : Output memory size (based on the amount of keys stored in json)
 * `!r / !reset` : Reset program to initial state
 * `!f / !forget` : Forget all memory data
 * `!c / !clear` : clear console
