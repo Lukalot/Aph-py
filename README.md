@@ -5,7 +5,7 @@ the name of which means Anthropomorphizing Parodist Heuristic bot (inspired by H
 # Use
 To run, simply download the source code and run `RUN.bat` or do `python path_to_folder/uwuAI.py`
 
-Typing messages in the program console will cause uwuAI to respond to and store/learn from your responses.
+Typing messages in the program console will cause Aph to respond to and store/learn from your responses.
 
 # !help
 This is the help command output:
