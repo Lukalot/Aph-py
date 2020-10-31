@@ -1,1 +1,1 @@
-python uwuai.py
+python aph.py
