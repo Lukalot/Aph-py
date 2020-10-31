@@ -1,5 +1,5 @@
-# uwuAI
-The repo for my tiny, but effective, AI/Chatbot project, "uwuAI".
+# APH
+The repo for my tiny, but effective, AI/Chatbot project, "APH".
 
 # Use
 To run, simply download the source code and run `RUN.bat` or do `python path_to_folder/uwuAI.py`
