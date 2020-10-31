@@ -1,5 +1,6 @@
-# APH
-The repo for my tiny, but effective, AI/Chatbot project, "APH".
+# Aph
+The repo for my tiny AI/Chatbot project, Aph;
+the name of which means Anthropomorphizing Parodist Heuristic bot (inspired by HAL-9000's definition)
 
 # Use
 To run, simply download the source code and run `RUN.bat` or do `python path_to_folder/uwuAI.py`
