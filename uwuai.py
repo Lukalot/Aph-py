@@ -5,12 +5,21 @@ import os
 import difflib
 import json
 
-title_art = '''                       _____   ___ 
+title_art_old = '''                       _____   ___ 
  __ ____  _  ____ __  /  _  \ |   |
 |  |  \ \/ \/ /  |  \/  /_\  \|   |
 |  |  /\     /|  |  /    |    \   |
 |____/  \/\_/ |____/\____|__  /___|
 © 2020 Lukalot              \/     '''
+
+title_art = '''
+  █████╗ ██████╗ ███╗ ███╗
+ ██╔══██╗██╔══██╗██╔╝ ██╔╝
+ ███████║██████╔╝███████║
+ ██╔══██║██╔═══╝ ██╔══██║
+ ██║  ██║██║     ██║  ██║
+ ╚═╝  ╚═╝╚═╝    ███║ ███║
+ © 2020 Lukalot ╚══╝ ╚══╝'''
 
 help_text = '''================== uwuAI Help ==================
 !h / !help : Looks like you found this one
@@ -23,6 +32,8 @@ help_text = '''================== uwuAI Help ==================
 !s / !save : Save memory to the given save file
 !ld / !load : Load memory from the given save file
 ================================================'''
+
+selection_range = 1
 
 def console_fresh(title):
     os.system('cls')
@@ -47,7 +58,7 @@ def converse(user_input):
         if memory.get(user_input):
             response = choice(memory.get(user_input))
         else:
-            response = choice(memory.get(difflib.get_close_matches(user_input, list(memory.keys()), 1, 0)[0]))
+            response = choice(memory.get(difflib.get_close_matches(user_input, list(memory.keys()), selection_range, 0)[0]))
     else:
         print('uwuAI has no learned data to respond with - turn on learning with the !learn special command.')
 
