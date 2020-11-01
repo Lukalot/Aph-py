@@ -1,5 +1,5 @@
 # Aph-py
-The repo for my small AI/Chatbot project, Aph. This is the origional version written in python; Aph has since been [ported to node](https://github.com/Lukalot/Aph).
+The repo for my small AI/Chatbot project, Aph. This is the original version written in python; Aph has since been [ported to node](https://github.com/Lukalot/Aph).
 The name means Anthropomorphizing Parodist Heuristic bot (inspired by [HAL 9000's definition](https://en.wikipedia.org/wiki/HAL_9000#Origin_of_name)).
 
 # Use
